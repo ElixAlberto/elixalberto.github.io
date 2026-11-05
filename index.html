@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elix Maza · Portafolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portafolio fotográfico de Elix Maza: fotografía de producto y detalle, cobertura de eventos y contenido para redes en Lima.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: hoja de contacto — portada con la foto ancla y el equipo, series en rejilla grande, trabajo editorial, cierre con contacto */
+:root{
+  --bg:#F5F6F7; --surface:#FFFFFF; --ink:#14171A; --muted:#58616A; --line:#D9DEE2; --accent:#D8241A;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --s2:1rem; --s3:1.5rem; --s4:2.5rem; --s5:4rem;
+  --max:1240px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0F1113;--surface:#171A1D;--ink:#ECEFF1;--muted:#9CA5AD;--line:#2B3035;--accent:#FF4B3E;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1113;--surface:#171A1D;--ink:#ECEFF1;--muted:#9CA5AD;--line:#2B3035;--accent:#FF4B3E;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1rem;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:var(--max);margin-inline:auto}
+img{display:block;max-width:100%;height:auto}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.label{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.label b{color:var(--accent);font-weight:500}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1}
+
+/* Portada */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:var(--s4);align-items:center;padding-block:var(--s5) var(--s4);border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(3rem,8.5vw,6.8rem);font-weight:800;font-stretch:72%;text-transform:uppercase;letter-spacing:-.01em}
+.hero h1 span{display:block;color:var(--accent)}
+.hero .role{font-family:var(--display);font-stretch:110%;font-size:clamp(1.05rem,2vw,1.3rem);font-weight:500;margin:var(--s3) 0 var(--s2)}
+.hero p.lead{max-width:56ch;color:var(--muted);margin:0}
+.hero figure{margin:0}
+.hero figure img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px}
+.hero figcaption{margin-top:.5rem}
+
+/* Equipo: se lee como la lista de una bolsa de cámara */
+.kit{margin-top:var(--s4);border-top:1px solid var(--line)}
+.kit .label{display:block;padding-top:var(--s2);margin-bottom:.6rem}
+.kit ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem}
+.kit li{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:.7rem .85rem;display:flex;flex-direction:column;gap:.1rem}
+.kit li strong{font-family:var(--display);font-stretch:85%;font-size:1.25rem;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.kit li span{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.kit li.body{grid-column:1/-1;border-color:var(--ink)}
+.since{display:flex;gap:var(--s3);flex-wrap:wrap;margin-top:var(--s3);font-family:var(--mono);font-size:.85rem}
+.since span{display:flex;gap:.5rem}
+.since em{font-style:normal;color:var(--muted)}
+
+/* Secciones */
+section{padding-block:var(--s5);border-bottom:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:var(--s3);align-items:end;margin-bottom:var(--s4)}
+.sec-head h2{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;font-stretch:75%;text-transform:uppercase}
+.sec-head p{margin:0;color:var(--muted);max-width:60ch}
+
+/* Galería justificada: cada fila ocupa todo el ancho y las fotos de una fila comparten altura */
+.jg{display:flex;flex-wrap:wrap;gap:8px}
+.jg .row{display:flex;gap:8px;width:100%}
+.jg button{all:unset;cursor:zoom-in;display:block;overflow:hidden;border-radius:2px;background:var(--line);flex:var(--ar) 1 calc(var(--ar) * 240px);min-width:0}
+.jg .row button{flex:var(--ar) 1 0}
+.jg img{width:100%;height:auto;aspect-ratio:var(--ar);object-fit:cover;transition:transform .4s ease}
+.jg button:hover img,.jg button:focus-visible img{transform:scale(1.03)}
+
+/* Catálogo: 12 piezas, columnas que siempre dividen 12 */
+.cat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s2)}
+.cat button{all:unset;cursor:zoom-in;display:block;min-width:0}
+.cat img{width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid var(--line);box-shadow:0 10px 24px -14px rgba(0,0,0,.45);transition:transform .25s ease}
+.cat button:hover img,.cat button:focus-visible img{transform:translateY(-4px)}
+.cat .label{margin-top:.5rem}
+
+.ig{display:grid;grid-template-columns:minmax(0,22rem) minmax(0,1fr);gap:var(--s4);align-items:center;margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid var(--line)}
+.ig button{all:unset;cursor:zoom-in;display:block}
+.ig img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px}
+.ig h3{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;font-stretch:80%;text-transform:uppercase;margin:.4rem 0 var(--s2)}
+.ig p{margin:0;color:var(--muted);max-width:56ch}
+.facts{margin:var(--s3) 0 0;display:flex;flex-direction:column}
+.facts div{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:var(--s2);padding-block:.6rem;border-top:1px solid var(--line);font-size:.95rem}
+.facts dt{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:.15rem}
+.facts dd{margin:0}
+
+/* Servicios y proceso */
+.svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s3)}
+.svc div{display:flex;flex-direction:column;gap:.4rem;padding-top:var(--s2);border-top:2px solid var(--ink)}
+.svc strong{font-family:var(--display);font-stretch:90%;font-size:1.25rem;font-weight:700;line-height:1.15}
+.svc p{margin:0;color:var(--muted)}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s2)}
+.steps li{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:var(--s3);display:flex;flex-direction:column;gap:.4rem}
+.steps li .label{color:var(--accent)}
+.steps strong{font-family:var(--display);font-stretch:90%;font-size:1.2rem;font-weight:700}
+.steps p{margin:0;color:var(--muted);font-size:.95rem}
+
+footer{padding-block:var(--s5)}
+footer h2{font-size:clamp(2.2rem,7vw,5rem);font-weight:800;font-stretch:70%;text-transform:uppercase}
+footer h2 span{color:var(--accent)}
+.cta-text{max-width:56ch;color:var(--muted);margin:var(--s3) 0 0}
+.contact{list-style:none;padding:0;margin:var(--s4) 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2)}
+.contact li{display:flex;flex-direction:column;gap:.35rem;padding:var(--s3);background:var(--surface);border:1px solid var(--line);border-radius:2px;min-width:0}
+.contact a{color:var(--ink);font-family:var(--display);font-stretch:90%;font-size:1.2rem;font-weight:700;text-decoration:none;overflow-wrap:anywhere}
+.contact a:hover{color:var(--accent)}
+.contact .mail{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
+.contact .mail a{font-size:1rem}
+.contact button{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:2px;padding:.3rem .55rem;cursor:pointer}
+.contact button:hover{border-color:var(--ink)}
+.hero-cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:var(--s3);background:var(--accent);color:#fff;font-family:var(--mono);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:.75rem 1.1rem;border-radius:2px}
+.hero-cta:hover{filter:brightness(1.08)}
+footer .fine{margin-top:var(--s4)}
+
+/* Visor */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(8,9,10,.95);display:grid;grid-template-rows:1fr auto;
+  padding:calc(env(safe-area-inset-top,0px) + 3.5rem) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 1rem) max(16px,env(safe-area-inset-left,0px))}
+.lb[hidden]{display:none}
+.lb img{max-height:100%;max-width:100%;margin:auto;object-fit:contain;min-height:0}
+.lb .bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;color:#E8EBED;font-family:var(--mono);font-size:.8rem;padding-top:.75rem}
+.lb button{font:inherit;color:#E8EBED;background:transparent;border:1px solid #474D53;padding:.45rem .8rem;cursor:pointer;border-radius:2px}
+.lb button:hover{border-color:#E8EBED}
+.lb .close{position:absolute;top:calc(env(safe-area-inset-top,0px) + .8rem);right:max(16px,env(safe-area-inset-right,0px))}
+.lb .nav{display:flex;gap:.5rem}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;padding-top:var(--s4)}
+  .hero figure{order:-1}
+  .hero figure img{aspect-ratio:4/3}
+  .sec-head,.ig{grid-template-columns:1fr}
+  .ig img{max-width:26rem}
+  .cat{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .svc,.steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .contact{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .cat{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .svc,.steps{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}html{scroll-behavior:smooth}</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <div>
+    <p class="label"><b>■</b> Portafolio fotográfico · Lima, Perú</p>
+    <h1>Elix <span>Maza</span></h1>
+    <p class="role">Fotografía de eventos, retrato y producto</p>
+    <p class="lead">Estudiante de Ingeniería Electrónica en la Universidad Peruana de Ciencias Aplicadas (UPC). Fotografío desde 2025 y administro la cuenta de Instagram de Vanguard UPC, para la cual realicé la sesión que presento en este portafolio. Me adapto a cualquier tipo de encargo: eventos deportivos, sociales y corporativos, retratos, producto y contenido para redes.</p>
+    <div class="kit">
+      <span class="label">Equipo fotográfico</span>
+      <ul>
+        <li class="body"><strong>Sony α7C II</strong><span>Cámara full frame</span></li>
+        <li><strong>24 mm f/1.8</strong><span>Gran angular luminoso</span></li>
+        <li><strong>85 mm f/1.8</strong><span>Retrato y detalle</span></li>
+        <li class="body"><strong>28–70 mm f/3.5–5.6</strong><span>Zoom versátil para cobertura</span></li>
+      </ul>
+    </div>
+    <a class="hero-cta" href="#contacto">Contactar →</a>
+  </div>
+  <figure>
+    <img src="img/kr60.jpg" width="1280" height="1600" alt="Brazo robótico industrial KUKA naranja en el laboratorio de la UPC">
+    <figcaption class="label">Brazo industrial KUKA · Laboratorio UPC</figcaption>
+  </figure>
+</header>
+
+<main>
+<section id="galeria">
+  <div class="sec-head">
+    <div><p class="label"><b>■</b> 16 fotografías</p><h2>Galería</h2></div>
+    <p>Sesión realizada en el laboratorio de robótica de la UPC. Seleccione cualquier imagen para verla en tamaño completo.</p>
+  </div>
+  <div class="jg" id="jg">
+    <button data-src="img/kr6-2.jpg" data-cap="Brazo KUKA posicionando la pinza" style="--ar:1.5009"><img src="img/kr6-2.jpg" width="1600" height="1066" loading="lazy" alt="Brazo KUKA blanco con pinza neumática sobre su mesa de trabajo"></button>
+    <button data-src="img/kr60.jpg" data-cap="Brazo industrial KUKA naranja" style="--ar:0.8000"><img src="img/kr60.jpg" width="1280" height="1600" loading="lazy" alt="Brazo industrial KUKA naranja"></button>
+    <button data-src="img/delta-1.jpg" data-cap="Robot Delta dentro de su celda" style="--ar:0.6663"><img src="img/delta-1.jpg" width="1066" height="1600" loading="lazy" alt="Robot Delta KUKA dentro de su celda con faja transportadora"></button>
+    <button data-src="img/nao.jpg" data-cap="Robot humanoide NAO" style="--ar:0.8000"><img src="img/nao.jpg" width="1280" height="1600" loading="lazy" alt="Robot humanoide NAO con fondo desenfocado"></button>
+    <button data-src="img/kr6-1.jpg" data-cap="Brazo KUKA con el control en primer plano" style="--ar:0.6663"><img src="img/kr6-1.jpg" width="1066" height="1600" loading="lazy" alt="Brazo KUKA con el control portátil en primer plano"></button>
+    <button data-src="img/delta-3.jpg" data-cap="Ventosa del robot Delta antes de recoger" style="--ar:0.6663"><img src="img/delta-3.jpg" width="1066" height="1600" loading="lazy" alt="Detalle de la ventosa del robot Delta sobre piezas azules"></button>
+    <button data-src="img/go2.jpg" data-cap="Perro robot Unitree Go2 a ras de suelo" style="--ar:0.6663"><img src="img/go2.jpg" width="1066" height="1600" loading="lazy" alt="Robot cuadrúpedo Unitree Go2 fotografiado a ras de suelo"></button>
+    <button data-src="img/scara.jpg" data-cap="Robot SCARA junto a la faja" style="--ar:0.7319"><img src="img/scara.jpg" width="1171" height="1600" loading="lazy" alt="Robot SCARA KUKA junto a una faja transportadora"></button>
+    <button data-src="img/kr6-3.jpg" data-cap="Brazo KUKA de perfil" style="--ar:0.6663"><img src="img/kr6-3.jpg" width="1066" height="1600" loading="lazy" alt="Brazo KUKA blanco de perfil con fondo desenfocado"></button>
+    <button data-src="img/delta-2.jpg" data-cap="Reflejos sobre la mesa de acero" style="--ar:0.6663"><img src="img/delta-2.jpg" width="1066" height="1600" loading="lazy" alt="Efector del robot Delta con reflejos rojos en la mesa"></button>
+    <button data-src="img/cnc.jpg" data-cap="Fresadora CNC grabando una placa" style="--ar:0.8000"><img src="img/cnc.jpg" width="1280" height="1600" loading="lazy" alt="Fresadora CNC grabando pistas en una placa de cobre"></button>
+    <button data-src="img/robotino.jpg" data-cap="Robot móvil Robotino" style="--ar:0.8000"><img src="img/robotino.jpg" width="1280" height="1600" loading="lazy" alt="Robot móvil Festo Robotino"></button>
+    <button data-src="img/kr6-4.jpg" data-cap="Pinza sobre el portaherramientas" style="--ar:0.6663"><img src="img/kr6-4.jpg" width="1066" height="1600" loading="lazy" alt="Pinza del brazo KUKA sobre el portaherramientas"></button>
+    <button data-src="img/delta-4.jpg" data-cap="Robot Delta frente a la ventana" style="--ar:0.6663"><img src="img/delta-4.jpg" width="1066" height="1600" loading="lazy" alt="Robot Delta visto de frente sobre la bandeja de piezas"></button>
+    <button data-src="img/prusa.jpg" data-cap="Impresora 3D en su cabina" style="--ar:0.8000"><img src="img/prusa.jpg" width="1280" height="1600" loading="lazy" alt="Impresora 3D Prusa dentro de su cabina"></button>
+    <button data-src="img/kr6-5.jpg" data-cap="Pinza tomando la herramienta" style="--ar:0.6663"><img src="img/kr6-5.jpg" width="1066" height="1600" loading="lazy" alt="Pinza del brazo KUKA con una punta metálica"></button>
+  </div>
+</section>
+
+<section id="vanguard">
+  <div class="sec-head">
+    <div><p class="label"><b>■</b> Trabajo publicado</p><h2>Vanguard UPC</h2></div>
+    <p>Las fotografías de la sesión se publicaron en el Catálogo de Robots 2026, un carrusel de 12 piezas con los 11 equipos del laboratorio, y en la cuenta de Instagram del grupo.</p>
+  </div>
+  <div class="cat">
+    <button data-src="img/cat-1.jpg" data-cap="Catálogo · Portada"><img src="img/cat-1.jpg" width="900" height="1125" loading="lazy" alt="Catálogo de Robots Vanguard UPC, portada"><p class="label">Portada</p></button>
+    <button data-src="img/cat-2.jpg" data-cap="Catálogo · Ficha 01 · NAO V6"><img src="img/cat-2.jpg" width="900" height="1125" loading="lazy" alt="Catálogo de Robots Vanguard UPC, ficha de NAO V6"><p class="label">01 · NAO V6</p></button>
+    <button data-src="img/cat-3.jpg" data-cap="Catálogo · Ficha 02 · KUKA KR 60"><img src="img/cat-3.jpg" width="900" height="1125" loading="lazy" alt="Catálogo de Robots Vanguard UPC, ficha de KUKA KR 60"><p class="label">02 · KUKA KR 60</p></button>
+    <button data-src="img/cat-4.jpg" data-cap="Catálogo · Ficha 03 · Robotino"><img src="img/cat-4.jpg" width="900" height="1125" loading="lazy" alt="Catálogo de Robots Vanguard UPC, ficha de Robotino"><p class="label">03 · Robotino</p></button>
+    <button data-src="img/cat-5.jpg" data-cap="Catálogo · Ficha 04 · CNC"><img src="img/cat-5.jpg" width="900" height="1125" loading="lazy" alt="Catálogo de Robots Vanguard UPC, ficha de CNC"><p class="label">04 · CNC</p></button>
+    <button data-src="img/cat-6.jpg" data-cap="Catálogo · Ficha 05 · Prusa MK4S"><img src="img/cat-6.jpg" width="900" height="1125" loading="lazy" alt="Catálogo de Robots Vanguard UPC, ficha de Prusa MK4S"><p class="label">05 · Prusa MK4S</p></button>
+    <button data-src="img/cat-7.jpg" data-cap="Catálogo · Ficha 06 · KUKA KR 6"><img src="img/cat-7.jpg" width="900" height="1125" loading="lazy" alt="Catálogo de Robots Vanguard UPC, ficha de KUKA KR 6"><p class="label">06 · KUKA KR 6</p></button>
+    <button data-src="img/cat-8.jpg" data-cap="Catálogo · Ficha 07 · Unitree Go2"><img src="img/cat-8.jpg" width="900" height="1125" loading="lazy" alt="Catálogo de Robots Vanguard UPC, ficha de Unitree Go2"><p class="label">07 · Unitree Go2</p></button>
+    <button data-src="img/cat-9.jpg" data-cap="Catálogo · Ficha 08 · Robot Delta"><img src="img/cat-9.jpg" width="900" height="1125" loading="lazy" alt="Catálogo de Robots Vanguard UPC, ficha de Robot Delta"><p class="label">08 · Robot Delta</p></button>
+    <button data-src="img/cat-10.jpg" data-cap="Catálogo · Ficha 09 · Unitree G1"><img src="img/cat-10.jpg" width="900" height="1125" loading="lazy" alt="Catálogo de Robots Vanguard UPC, ficha de Unitree G1"><p class="label">09 · Unitree G1</p></button>
+    <button data-src="img/cat-11.jpg" data-cap="Catálogo · Ficha 10 · KUKA KMR iiwa"><img src="img/cat-11.jpg" width="900" height="1125" loading="lazy" alt="Catálogo de Robots Vanguard UPC, ficha de KUKA KMR iiwa"><p class="label">10 · KUKA KMR iiwa</p></button>
+    <button data-src="img/cat-12.jpg" data-cap="Catálogo · Ficha 11 · KUKA SCARA"><img src="img/cat-12.jpg" width="900" height="1125" loading="lazy" alt="Catálogo de Robots Vanguard UPC, ficha de KUKA SCARA"><p class="label">11 · KUKA SCARA</p></button>
+  </div>
+  <div class="ig">
+    <button data-src="img/nao-post.jpg" data-cap="Publicación para Instagram · Conoce nuestros recursos"><img src="img/nao-post.jpg" width="1280" height="1600" loading="lazy" alt="Publicación de Instagram con dos robots NAO"></button>
+    <div>
+      <span class="label">Redes sociales</span>
+      <h3>Instagram de Vanguard UPC</h3>
+      <p>Administro la cuenta del grupo de investigación. Me encargo de la fotografía, la edición y la publicación del contenido, cuidando que cada imagen funcione en formato vertical 4:5.</p>
+      <dl class="facts">
+        <div><dt>Rol</dt><dd>Fotografía, edición y publicación</dd></div>
+        <div><dt>Formato</dt><dd>Carrusel y publicación vertical 4:5</dd></div>
+        <div><dt>Año</dt><dd>2026</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="sec-head">
+    <div><p class="label"><b>■</b> Servicios</p><h2>Tipos de trabajo</h2></div>
+    <p>Me adapto al formato, al ritmo y al estilo que requiera cada cliente. Estos son los encargos que puedo asumir en Lima.</p>
+  </div>
+  <div class="svc">
+    <div><strong>Eventos deportivos</strong><p>Torneos, partidos y premiaciones. Cobertura de jugadores, acción en cancha y ambiente del evento.</p></div>
+    <div><strong>Eventos sociales y corporativos</strong><p>Reuniones, ceremonias, ferias y presentaciones institucionales.</p></div>
+    <div><strong>Retratos</strong><p>Fotografías individuales y de equipo, con fondo desenfocado gracias al 85 mm f/1.8.</p></div>
+    <div><strong>Producto y redes</strong><p>Fotografía de producto y contenido editado en formato vertical, listo para publicar.</p></div>
+  </div>
+</section>
+
+<section id="proceso">
+  <div class="sec-head">
+    <div><p class="label"><b>■</b> Proceso</p><h2>Forma de trabajo</h2></div>
+    <p>Un proceso ordenado para que el cliente sepa qué esperar en cada etapa.</p>
+  </div>
+  <ol class="steps">
+    <li><span class="label">Paso 1</span><strong>Coordinación</strong><p>Reviso con el cliente el horario, el lugar y las tomas prioritarias.</p></li>
+    <li><span class="label">Paso 2</span><strong>Cobertura</strong><p>Fotografío el evento completo con el lente adecuado para cada momento.</p></li>
+    <li><span class="label">Paso 3</span><strong>Selección y edición</strong><p>Elijo las mejores tomas y ajusto color, exposición y encuadre.</p></li>
+    <li><span class="label">Paso 4</span><strong>Entrega</strong><p>Entrego las fotos en alta resolución y en formatos para redes sociales.</p></li>
+  </ol>
+</section>
+</main>
+
+<footer id="contacto">
+  <p class="label"><b>■</b> Contacto</p>
+  <h2>Elix <span>Maza</span></h2>
+  <p class="cta-text">Disponible para eventos, retratos y contenido en Lima. Escríbame para coordinar fecha, lugar y tipo de cobertura.</p>
+  <ul class="contact">
+    <li><span class="label">WhatsApp</span><a href="https://wa.me/51920205898" target="_blank" rel="noopener">+51 920 205 898</a></li>
+    <li><span class="label">Correo</span><span class="mail"><a href="mailto:elixalbertomazaencinas@gmail.com" id="mail">elixalbertomazaencinas@gmail.com</a><button type="button" id="copy-mail">Copiar</button></span></li>
+    <li><span class="label">Instagram</span><a href="https://www.instagram.com/elixalbertomaen/" target="_blank" rel="noopener">@elixalbertomaen</a></li>
+  </ul>
+  <p class="label fine">Todas las fotografías son de Elix Maza · Lima, Perú · 2026</p>
+</footer>
+</div>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Visor de fotos">
+  <button class="close" id="lb-close" type="button">Cerrar ✕</button>
+  <img id="lb-img" alt="">
+  <div class="bar"><span id="lb-cap"></span><span class="nav"><button id="lb-prev" type="button">← Anterior</button><button id="lb-next" type="button">Siguiente →</button></span></div>
+</div>
+
+<script>
+(function(){
+  /* Galería justificada: arma filas completas y une la última si queda corta */
+  const box=document.getElementById('jg');
+  const items=[...box.querySelectorAll('button')];
+  const GAP=8; let lastW=0;
+  function layout(){
+    const W=box.clientWidth; if(!W||W===lastW) return; lastW=W;
+    const H=W<520?240:W<900?270:330;
+    const rows=[]; let cur=[],sum=0;
+    items.forEach(b=>{const ar=parseFloat(b.style.getPropertyValue('--ar'));cur.push(b);sum+=ar;
+      if(sum*H+(cur.length-1)*GAP>=W){rows.push(cur);cur=[];sum=0;}});
+    if(cur.length){const w=sum*H+(cur.length-1)*GAP; if(rows.length&&w<W*.6){rows[rows.length-1].push(...cur);} else rows.push(cur);}
+    box.textContent='';
+    rows.forEach(r=>{const d=document.createElement('div');d.className='row';r.forEach(b=>d.appendChild(b));box.appendChild(d);});
+  }
+  layout();
+  if('ResizeObserver' in window) new ResizeObserver(layout).observe(box); else addEventListener('resize',layout);
+})();
+(function(){
+  const items=[...document.querySelectorAll('button[data-src]')];
+  const lb=document.getElementById('lb'),img=document.getElementById('lb-img'),cap=document.getElementById('lb-cap');
+  let i=0,last=null;
+  function show(n){i=(n+items.length)%items.length;const b=items[i];img.src=b.dataset.src;img.alt=b.querySelector('img').alt;cap.textContent=b.dataset.cap+'  ·  '+(i+1)+' / '+items.length;}
+  function open(n){last=document.activeElement;show(n);lb.hidden=false;document.body.style.overflow='hidden';document.getElementById('lb-close').focus();}
+  function close(){lb.hidden=true;document.body.style.overflow='';if(last)last.focus();}
+  items.forEach((b,n)=>b.addEventListener('click',()=>open(n)));
+  document.getElementById('lb-close').onclick=close;
+  document.getElementById('lb-prev').onclick=()=>show(i-1);
+  document.getElementById('lb-next').onclick=()=>show(i+1);
+  lb.addEventListener('click',e=>{if(e.target===lb)close();});
+  document.addEventListener('keydown',e=>{if(lb.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowRight')show(i+1);if(e.key==='ArrowLeft')show(i-1);});
+  const cb=document.getElementById('copy-mail');
+  cb.addEventListener('click',()=>{const t='elixalbertomazaencinas@gmail.com';
+    const done=()=>{cb.textContent='Copiado';setTimeout(()=>cb.textContent='Copiar',1800);};
+    const sel=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('mail'));const s=getSelection();s.removeAllRanges();s.addRange(r);cb.textContent='Seleccionado';setTimeout(()=>cb.textContent='Copiar',1800);};
+    try{navigator.clipboard.writeText(t).then(done,sel);}catch(e){sel();}});
+})();
+</script>
+
+</body>
+</html>
